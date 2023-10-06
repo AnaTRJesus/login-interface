@@ -1,6 +1,8 @@
 import { Component , OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ImageLoaderService } from '../image-loader.service';
+import { LoginService} from '../login.service';
+
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   logoUrl: string = '';
 
-  constructor(private formBuilder: FormBuilder,private imageLoader: ImageLoaderService) {
+  constructor(private formBuilder: FormBuilder,private imageLoader: ImageLoaderService, private service: LoginService) {
     this.loginForm = this.formBuilder.group({
       usuario: ['', []],
       senha: ['', [Validators.required, Validators.minLength(6)]]
@@ -35,9 +37,18 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  updatePendingApprovals() : void {
-    alert("Logged");
-  }
+  updatePendingApprovals(usuario: string, senha: string) : void {
+    
+    let result :string = this.service.logar(usuario, senha);
+
+    if(result == "false"){
+          alert("Usuario ou senha inválidos, por favor tente novamente");
+      }
+
+      if(result == "true"){
+          alert("Logado com sucesso");
+      }
+    }
 }
 
 
