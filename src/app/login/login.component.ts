@@ -39,15 +39,10 @@ export class LoginComponent implements OnInit {
 
   updatePendingApprovals(usuario: string, senha: string) : void {
     
-    let result :string = this.service.logar(usuario, senha);
+    let result :string; 
+    
+   this.service.logar(usuario, senha);
 
-    if(result == "false"){
-          alert("Usuario ou senha inválidos, por favor tente novamente");
-      }
-
-      if(result == "true"){
-          alert("Logado com sucesso");
-      }
     }
 }
 
