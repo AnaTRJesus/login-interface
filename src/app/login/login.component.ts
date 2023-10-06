@@ -13,8 +13,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,private imageLoader: ImageLoaderService) {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      usuario: ['', []],
+      senha: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
   
@@ -33,6 +33,10 @@ export class LoginComponent implements OnInit {
     } else {
       return;
     }
+  }
+
+  updatePendingApprovals() : void {
+    alert("Logged");
   }
 }
 
